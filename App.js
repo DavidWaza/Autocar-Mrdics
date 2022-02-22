@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer screenOptions={{ headerShow: false }}>
+    <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="Auto Medics"

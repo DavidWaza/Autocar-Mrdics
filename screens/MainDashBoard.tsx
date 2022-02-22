@@ -15,14 +15,16 @@ import { Entypo } from "@expo/vector-icons";
 // import  {Users} from "../assets/data"
 import Map from "../Map";
 
-
-const DashBoard = () => {
+interface props{
+  navigation:any
+}
+const DashBoard:FC<props> = (props) => {
   const [user, setUser] = useState([
     { user: "David Waza", location: "Abuja, F.C.T", key: "1" },
   ]);
 
- const repairsNavigation = ({navigation}) =>{
-     navigation.navigate("carRepairs")
+ const repairsNavigation = () =>{
+     props.navigation.navigate("carRepairs")
  }
   return (
     <ScrollView>
@@ -199,7 +201,6 @@ const styles = StyleSheet.create({
     width: 100,
   },
   title: {
-    color: "",
     fontSize: 25,
     color: "#2c0b1c",
     fontWeight: "800",
