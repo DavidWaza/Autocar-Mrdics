@@ -1,10 +1,13 @@
-import React from "react";
+import React,{FC} from "react";
 import { View, Text, ImageBackground, Pressable } from "react-native";
 import { globalStyles } from "./styles/globalStyles";
 
-const SplashScreen = ({navigation}) => {
+interface props{
+  navigation:any
+}
+const SplashScreen:FC<props> = (props) => {
   const handlePress = () => {
-    navigation.navigate("Login");
+    props.navigation.navigate("Login");
   };
   return (
     <ImageBackground

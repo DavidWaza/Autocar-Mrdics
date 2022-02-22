@@ -6,6 +6,7 @@ import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import DashBoard from "./screens/MainDashBoard";
 import React from "react";
+import Map from "./Map";
 import CarRepairs from "./screens/carRepairs.tsx";
 
 const Stack = createNativeStackNavigator();
@@ -58,7 +59,7 @@ export default function App() {
             },
           }}
         />
-        <Stack.Screen name="carRepairs" component={CarRepairs} />
+        <Stack.Screen name="Map" component={Map} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,23 +12,41 @@ import {
 import { globalStyles } from "../styles/globalStyles";
 import moment from "moment";
 import { Entypo } from "@expo/vector-icons";
-// import  {Users} from "../assets/data"
-import Map from "../Map";
+import { FontAwesome } from "@expo/vector-icons";
 
-interface props{
-  navigation:any
+interface props {
+  navigation: any;
 }
-const DashBoard:FC<props> = (props) => {
+const DashBoard: FC<props> = (props) => {
   const [user, setUser] = useState([
     { user: "David Waza", location: "Abuja, F.C.T", key: "1" },
   ]);
 
- const repairsNavigation = () =>{
-     props.navigation.navigate("carRepairs")
- }
+  const repairsNavigation = () => {
+    props.navigation.navigate("carRepairs");
+  };
   return (
     <ScrollView>
+      <View style={styles.mapOutline}>
+        <TouchableOpacity
+          style={styles.iconMap}
+          onPress={() => props.navigation.navigate("Map")}
+        >
+          <Entypo name="location" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+      <View style={{ ...styles.mapOutline, ...styles.questionOutline }}>
+        <TouchableOpacity style={styles.iconQuestion}>
+          <FontAwesome name="question" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
       {/* hero banner area */}
+      <View style={styles.nameProps}>
+        <Text style={styles.namePropsText}>Hello, Waza!</Text>
+        <Text style={styles.namePropsSubText}>
+          What can we do for you today?
+        </Text>
+      </View>
       <View style={styles.container}>
         <View style={styles.columnBox}>
           <Text style={styles.text}>CAR SERVICES &</Text>
@@ -45,7 +63,7 @@ const DashBoard:FC<props> = (props) => {
         {/* select services area */}
         <Text style={styles.serText}>Select services</Text>
         <View style={styles.rowBox}>
-          <TouchableOpacity  onPress={repairsNavigation}>
+          <TouchableOpacity onPress={repairsNavigation}>
             <View style={styles.boxOne}>
               <Image
                 source={require("../assets/repairs.png")}
@@ -58,7 +76,7 @@ const DashBoard:FC<props> = (props) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity  onPress={repairsNavigation}>
+          <TouchableOpacity onPress={repairsNavigation}>
             <View style={{ ...styles.boxOne, ...styles.boxTwo }}>
               <Image
                 source={require("../assets/car.png")}
@@ -129,18 +147,45 @@ const DashBoard:FC<props> = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#eee",
+    marginVertical: 10,
+  },
+  nameProps: {
+    backgroundColor: "#fefefe",
+    borderRadius: 20,
+    marginVertical: 20,
+    marginHorizontal: 20,
+    height: 100,
+    width: "100%",
+    elevation: 3,
+  },
+  namePropsText: {
+    marginTop: 20,
+    marginBottom: 20,
+    marginHorizontal: 20,
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#1a1110",
+  },
+  namePropsSubText: {
+    fontSize: 15,
+    marginTop: -20,
+    marginHorizontal: 20,
+    color: "#282C35",
   },
   columnBox: {
     color: "white",
+    borderRadius: 20,
     justifyContent: "center",
     alignContent: "center",
     flexDirection: "column",
     backgroundColor: "#2c0b1c",
     marginHorizontal: 10,
     height: 300,
+    elevation: 3,
   },
   rowBox: {
     flexDirection: "row",
+    borderRadius: 20,
     justifyContent: "space-around",
     marginHorizontal: 10,
     marginTop: 20,
@@ -163,14 +208,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   boxOne: {
+    borderRadius: 20,
     backgroundColor: "#d1a134",
     width: 200,
     height: 200,
     alignItems: "center",
     alignContent: "center",
+    elevation: 3,
   },
   boxTwo: {
     backgroundColor: "#2c0b1c",
+    elevation: 3,
   },
   text: {
     position: "absolute",
@@ -227,7 +275,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3f3f3",
     marginHorizontal: 10,
     marginVertical: 10,
-    height: 150,
+    height: 160,
+    elevation: 3,
+    paddingBottom: 10,
   },
   onGoingimage: {
     height: 50,
@@ -256,6 +306,30 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 15,
     marginHorizontal: 10,
+  },
+  mapOutline: {
+    backgroundColor: "#fefefe",
+    height: 45,
+    width: 45,
+    marginHorizontal: 20,
+    marginVertical: 20,
+    borderRadius: 100,
+    borderColor: "black",
+    elevation: 3,
+  },
+  iconMap: {
+    marginHorizontal: 10,
+    marginVertical: 10,
+    marginRight: -9,
+  },
+  questionOutline: {
+    position: "absolute",
+    right: 0,
+  },
+  iconQuestion: {
+    marginHorizontal: 15,
+    marginVertical: 10,
+    marginRight: -9,
   },
 });
 export default DashBoard;
