@@ -13,10 +13,12 @@ import { globalStyles } from "../styles/globalStyles";
 import Input from "../component/Input";
 import Button from '../component/button'
 
-const Signup: FC = (props) => {
+interface props {
+  navigation:any
+}
+const Signup: FC<props> = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
 
   const signUpNavigation = () => {
      props. navigation.goBack();

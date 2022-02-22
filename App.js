@@ -11,15 +11,53 @@ import CarRepairs from "./screens/carRepairs.tsx";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  
   return (
-  
-    <NavigationContainer screenOptions={{headerShow:false}}>
+    <NavigationContainer screenOptions={{ headerShow: false }}>
       <Stack.Navigator initialRouteName="SplashScreen">
-        <Stack.Screen name="Auto Medics" component={SplashScreen} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Dashboard" component={DashBoard} />
+        <Stack.Screen
+          name="Auto Medics"
+          component={SplashScreen}
+          options={{
+            title:"",
+            headerStyle: {
+              backgroundColor: "#16161d",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            title: "Login",
+            headerStyle: {
+              backgroundColor: "#da9100",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{
+            title: "SignUp",
+            headerStyle: {
+              backgroundColor: "#848482",
+              textAlign: "center",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={DashBoard}
+          options={{
+            headerStyle: {
+              backgroundColor: "#2c0b1c",
+            },
+          }}
+        />
         <Stack.Screen name="carRepairs" component={CarRepairs} />
       </Stack.Navigator>
     </NavigationContainer>

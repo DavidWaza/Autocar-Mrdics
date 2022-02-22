@@ -11,9 +11,14 @@ import { globalStyles } from "../styles/globalStyles";
 import Input from "../component/Input";
 import { Button } from "../component";
 
-const Login: FC = (props) => {
+interface props {
+  navigation:any
+}
+const Login: FC<props> = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+
 
   const signUpNavigation = () => {
     props.navigation.navigate("Signup");
