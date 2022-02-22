@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import {
   StyleSheet,
   View,
-  TextInput,
   Text,
   Alert,
-  Pressable,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
+import Input from "../component/Input";
+import { Button } from "../component";
 
-const Login = ({ navigation }) => {
+const Login: FC = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const signUpNavigation = () => {
-    navigation.navigate("Signup");
+    props.navigation.navigate("Signup");
   };
   const submitHandler = () => {
     if (name.length > 3 && password.length > 3) {
-        return navigation.navigate("Dashboard");
+        return props.navigation.navigate("Dashboard");
     } else {
       Alert.alert("OOPS!", "Please input your Correct details", [
         { text: "understood", onPress: () => console.log("pressed alert") },
@@ -34,15 +34,14 @@ const Login = ({ navigation }) => {
       style={globalStyles.container}
     >
       <View>
-        <TextInput
-        required
+        <Input
           style={globalStyles.input}
           placeholder="Username"
+          secureTextEntry={false}
           placeholderTextColor="#000"
           onChangeText={(val) => setName(val)}
         />
-        <TextInput
-        required
+        <Input
           style={globalStyles.input}
           placeholder="Password"
           placeholderTextColor="black"
@@ -50,39 +49,30 @@ const Login = ({ navigation }) => {
           onChangeText={(val) => setPassword(val)}
         />
       </View>
-      <Pressable style={styles.button} onPress={submitHandler}>
-        <Text style={globalStyles.text}>Login</Text>
-      </Pressable>
-      <TouchableOpacity onPress={signUpNavigation}>
-        <Text style={styles.text}>Don't have account ? Sign up</Text>
-      </TouchableOpacity>
+      <Button title="Login" onPress={submitHandler} />
+      <View style={styles.loginText}>
+        <Text style={{ color:"white"}}>Don't have an Account?</Text>
+        <TouchableOpacity onPress={signUpNavigation} style={{marginHorizontal:5}}>
+          <Text style={{color:"white"}}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+      {/* <TouchableOpacity onPress={signUpNavigation}>
+        <Text>Sign up</Text>
+      </TouchableOpacity> */}
     </ImageBackground>
   );
 };
+export default Login;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#eee",
   },
-
-  button: {
-    marginTop: 20,
-    width: "75%",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    elevation: 3,
-    backgroundColor: "black",
-  },
-  text: {
-    marginTop: 13,
-    fontSize: 13,
-    color: "white",
-  },
-});
-export default Login;
+  loginText:{
+    flexDirection:"row",
+    marginVertical:20,
+  }
+})
